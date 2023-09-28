@@ -1,0 +1,152 @@
+.ruta-tareas {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #fff;
+  .form-tarea {
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    .caja-tarea {
+      padding: 10px;
+      border: none;
+      background-color: #e5e7f8;
+      font-size: 16px;
+      outline: none;
+      border-radius: 5px;
+      &::placeholder {
+        font-size: 18px;
+        color: #464646;
+      }
+      &.textarea {
+        resize: none;
+      }
+    }
+    .btn-tarea {
+      padding: 10px;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #215a6d;
+      color: #fff;
+    }
+  }
+  .section-tareas {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 16px;
+    border-top: 2px solid #aaa9a9;
+    .titulo-sin-tareas {
+      padding: 10px;
+      font-size: 40px;
+    }
+    .container-tarea {
+      position: relative;
+      width: 250px;
+      height: 300px;
+      box-shadow: 0 0 8px #000;
+      border-radius: 10px;
+      padding: 8px;
+      word-wrap: break-word;
+      background-color: #e5e7f8;
+      overflow-y: hidden;
+      .funciones-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .circulo {
+          width: 30px;
+          height: 30px;
+          -webkit-clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+          );
+          clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+          );
+          cursor: pointer;
+          background-color: rgb(99, 99, 99);
+        }
+        .selected {
+          background-color: #fdc716;
+        }
+        .eliminar-tarea {
+          width: 30px;
+          font-size: 35px;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+      }
+      .titulo-tarea {
+        color: #2d85cc;
+        font-size: 20px;
+        padding-bottom: 10px;
+      }
+      .div-tarea {
+        width: 100%;
+        height: 200px;
+        overflow-y: auto;
+        .p-tarea {
+          font-size: 18px;
+          font-weight: 500;
+          color: #5a5a5a;
+        }
+      }
+    }
+  }
+  &.dark-tareas {
+    background-color: #2d2d29;
+
+    .btn-tarea {
+      background-color: #3ca2a2;
+    }
+    .section-tareas {
+      background-color: #2d2d29;
+      .titulo-sin-tareas {
+        color: #fff;
+      }
+      .container-tarea {
+        background-color: #215a6d;
+        box-shadow: 0 0 3px #fff;
+        .titulo-tarea {
+          color: #ffffff;
+        }
+        .eliminar-tarea {
+          color: #fff;
+        }
+        .div-tarea {
+          .p-tarea {
+            color: #00c3ff;
+          }
+        }
+      }
+    }
+  }
+}

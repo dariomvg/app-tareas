@@ -1,0 +1,160 @@
+.ruta-notas {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+
+  .form-nota {
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    gap: 10px;
+    padding: 20px;
+    .div-input {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      &::placeholder {
+        font-size: 18px;
+      }
+      label {
+        font-weight: 500;
+      }
+      .input-nota {
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+        border: none;
+        background-color: #e5e7f8;
+        &::placeholder {
+          font-size: 18px;
+          color: #535353;
+        }
+      }
+    }
+    .textarea {
+      resize: none;
+      font-size: 16px;
+      padding: 10px;
+      outline: none;
+      border: none;
+      background-color: #e5e7f8;
+      color: #000;
+      &::placeholder {
+        color: #3f3e3e;
+      }
+    }
+    .btn-nota {
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      background-color: #215a6d;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  .section-notas {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px;
+    border-top: 2px solid #aaa9a9;
+    .container-nota {
+      width: 240px;
+      height: 320px;
+      word-wrap: break-word;
+      padding: 10px;
+      background-color: #e5e7f8;
+      box-shadow: 0 0 8px #000;
+      border-radius: 10px;
+      display: grid;
+      gap: 5px;
+      overflow-y: hidden;
+
+      .eliminar-nota {
+        width: 30px;
+        border: none;
+        font-size: 25px;
+        background: none;
+        cursor: pointer;
+      }
+
+      .titulo-nota {
+        text-align: center;
+        font-size: 22px;
+        color: #2d85cc;
+        word-wrap: break-word;
+      }
+
+      .titulo-fecha {
+        font-size: 18px;
+        color: #2b5679;
+      }
+      .fecha-nota {
+        font-weight: 500;
+        color: #000;
+      }
+
+      .div-nota {
+        width: 100%;
+        height: 170px;
+        overflow-y: auto;
+        border-radius: 10px;
+        word-wrap: break-word;
+        .p-nota {
+          font-size: 18px;
+          font-weight: 700;
+          color: #5a5a5a;
+        }
+      }
+    }
+  }
+  .title-sin-notas {
+    font-size: 35px;
+    padding: 20px;
+  }
+
+  &.dark-notas {
+    background-color: #2d2d29;
+    .form-nota {
+      .div-input {
+        label {
+          color: #00c3ff;
+        }
+      }
+    }
+    .section-notas {
+      background-color: #2d2d29;
+      .container-nota {
+        background-color: #215a6d;
+        box-shadow: 0 0 3px #fff;
+        .titulo-nota {
+          color: #ffffff;
+        }
+        .eliminar-nota {
+          color: #fff;
+        }
+        .titulo-fecha {
+          color: #00c3ff;
+        }
+        .div-nota {
+          .p-nota {
+            color: #00c3ff;
+          }
+        }
+      }
+    }
+  }
+
+  .title-sin-notas {
+    color: #fff;
+  }
+}
