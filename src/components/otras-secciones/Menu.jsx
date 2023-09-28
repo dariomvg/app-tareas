@@ -1,20 +1,17 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./menu.scss";
 import imgDia from "../../assets/images/img-dia.png";
 import imgNoche from "../../assets/images/img-noche.png";
 import imgNotas from "../../assets/icons/img-notas.png";
 import imgTareas from "../../assets/icons/img-tareas.png";
 import imgFavoritos from "../../assets/icons/img-favoritos.png";
-import imgLogin from "../../assets/icons/img-login.png";
 import imgFlechaIzq from "../../assets/icons/flechaIzq.svg";
 import imgFlechaDer from "../../assets/icons/flechaDer.svg";
 import { ThemeContext } from "../../context/ThemeContext";
 
 export function Menu() {
   const [menu, setMenu] = useState(false);
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -78,18 +75,6 @@ export function Menu() {
               favoritos
             </Link>
           </li>
-          <li>
-            <img src={imgLogin} width={38} height={38} alt="imagen de login" />
-            {isAuthenticated ? (
-              <h4 className="ruta login" onClick={() => logout()}>
-                Cerrar Sesión
-              </h4>
-            ) : (
-              <h4 className="ruta login" onClick={() => loginWithRedirect()}>
-                Iniciar Sesión
-              </h4>
-            )}
-          </li>
         </ul>
       </nav>
       {!theme ? (
@@ -112,7 +97,6 @@ export function Menu() {
         />
       )}
     </header>
-  
     </section>
    );
 }
