@@ -1,41 +1,33 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { getLocalStorageTareas, setLocalStorageTareas } from "../../controllers/usosLocalStorage";
+import { FunctionsContext } from "../../context/FunctionsContext";
 import { FormTarea } from "./FormTarea";
-import "./Tareas.scss";
 import { TareaNueva } from "./TareaNueva";
 import { ThemeContext } from "../../context/ThemeContext";
+import "./Tareas.scss";
 
-export function ContainerTarea({handleFavoritos}) {
-
+export function ContainerTarea() {
   const {theme} = useContext(ThemeContext); 
-  const [contTarea, setContTarea] = useState([]);
-
-  const handleTareaNueva = (data) => {
-    data.id = Date.now();
-    setContTarea([...contTarea, data]);
-  };
-
-  const eliminarTarea = (id) => {
-    setContTarea(contTarea.filter((item) => item.id !== id));
-  };
+  const {contTarea, setContTarea} = useContext(FunctionsContext); 
 
   useEffect(() => {
-    const dataLocal = localStorage.getItem("tareas");
+    const dataLocal = getLocalStorageTareas(); 
     if (dataLocal) {
       setContTarea(JSON.parse(dataLocal));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("tareas", JSON.stringify(contTarea));
+    setLocalStorageTareas(contTarea)
   }, [contTarea]);
 
   return (
     <section className={`ruta-tareas ${theme ? "dark-tareas" : ""}`}>
-      <FormTarea handleTareaNueva={handleTareaNueva}/>
-
+      <FormTarea />
+      <hr />
       <section className="section-tareas">
         {contTarea.length > 0 ? (
-          contTarea.map((item) => <TareaNueva key={item.id} item={item} eliminarTarea={eliminarTarea}  handleFavoritos={handleFavoritos} />)
+          contTarea.map((item) => <TareaNueva key={item.id} item={item} />)
         ): (
           <h1 className="titulo-sin-tareas">Sin tareas</h1>
         )}

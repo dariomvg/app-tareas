@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
-import "./Favoritos.scss";
 import { TareaFavorita } from "./TareaFavorita";
 import { ThemeContext } from "../../context/ThemeContext";
+import { FunctionsContext } from "../../context/FunctionsContext";
+import "./Favoritos.scss";
 
-export function ContainerFavoritos({ contFavoritos, eliminarFav }) {
+export function ContainerFavoritos() {
   const [info, setInfo] = useState(false);
   const {theme} = useContext(ThemeContext); 
+  const {contFavoritos} = useContext(FunctionsContext); 
 
   const handleInfo = () => {
     setInfo(!info);
@@ -24,7 +26,6 @@ export function ContainerFavoritos({ contFavoritos, eliminarFav }) {
             <TareaFavorita
               key={item.id}
               item={item}
-              eliminarFav={eliminarFav}
               info={info}
             />
           ))

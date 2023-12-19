@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FunctionsContext } from "../../context/FunctionsContext";
+import { inicialNotas } from "../../constantes/objForm";
 import "./Notas.scss";
-import { inicialNotas } from "../../constantes/objNotas";
 
-export function FormNotas({handleNotaNueva}) {
+export function FormNotas() {
   const [formNota, setFormNota] = useState(inicialNotas);
+  const {notaNueva} = useContext(FunctionsContext); 
 
   const handleChangeNotas = (e) => {
     setFormNota({
@@ -14,7 +16,7 @@ export function FormNotas({handleNotaNueva}) {
 
   const handleSubmitNota = (e) => {
     e.preventDefault();
-    handleNotaNueva(formNota)
+    notaNueva(formNota)
     setFormNota(inicialNotas)
   };
 
@@ -28,14 +30,14 @@ export function FormNotas({handleNotaNueva}) {
         <input
           type="text"
           name="titulo"
-          placeholder="Salir a caminar, terminar..."
+          placeholder="Agregue el título de la nota"
           className="input-nota"
           value={formNota.titulo}
           onChange={handleChangeNotas}
         />
       </div>
       <div className="div-input">
-        <label>Ingrése la fecha de término</label>
+        <label>Coloque una fecha de término</label>
         <input
           type="datetime-local"
           name="fecha"
@@ -44,16 +46,19 @@ export function FormNotas({handleNotaNueva}) {
           onChange={handleChangeNotas}
         />
       </div>
-
+    <div className="div-input">
+      <label>Nota</label>
       <textarea
         rows="3"
         name="nota"
-        placeholder="Ingrése su Nota"
-        className="div-input input-nota textarea"
+        placeholder="Agregue su nota"
+        className="input-nota textarea"
         value={formNota.nota}
         onChange={handleChangeNotas}>
         Ingrese su nota
       </textarea>
+    </div>
+
 
       <button className="btn-nota" type="submit">Agregar</button>
     </form>

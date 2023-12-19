@@ -12,6 +12,15 @@
   gap: 20px;
   transition: 0.5s;
   padding-top: 70px;
+  color: #fff;
+  background-image: linear-gradient(
+    to left bottom,
+    #1d2027,
+    #1c2026,
+    #1c1f25,
+    #1b1f25,
+    #1b1e24
+  );
   &.fondo-modal {
     background-color: #000000be;
     justify-content: center;
@@ -23,30 +32,30 @@
     padding: 10px;
     font-size: 16px;
     border-radius: 10px;
-    box-shadow: 0 0 3px #000000;
+    box-shadow: 0 0 2px #fff;
     color: #fff;
-    background-color: #215a6d;
+    background-color: #1A6DFF;
     font-weight: 700;
     cursor: pointer;
     position: absolute;
     top: 15px;
-    right: 30px;
+    left: 200px;
+    transition: background-color .5s;
     &:hover {
-      background-color: #1e83a5;
+      background-color: #1a6effbe;
+      transition: background-color .5s;
     }
   }
   .container-favoritos {
     width: 150px;
     height: 80px;
     padding: 10px;
-    background-color: #ffe4c4;
+    background-color: #8B4513,;
     border-radius: 10px;
     box-shadow: 0 0 5px #000;
     transition: 0.5s;
 
     .eliminar-fav {
-      width: 100%;
-      height: 5px;
       font-size: 20px;
       border: none;
       background: none;
@@ -55,7 +64,7 @@
     }
     .titulo-fav {
       font-size: 22px;
-      color: #df7c03;
+      color: #fff;
     }
     .tarea-fav {
       display: none;
@@ -63,12 +72,13 @@
     &.modal {
       transition: 0.5s;
       width: 400px;
-      height: 300px;
+      height: 280px;
       .eliminar-fav {
         display: none;
       }
       .titulo-fav {
         font-size: 30px;
+        padding-bottom: 10px;
       }
       .tarea-fav {
         display: flex;
@@ -94,4 +104,17 @@
   .titulo-sin-favoritos {
     color: #fff;
   }
+}
+
+@media (max-width: 550px) {
+  .ruta-favoritos {
+    .container-favoritos {
+    width: 100%;
+    &.modal {
+      width: 100%;
+
+    }
+  }
+  }
+  
 }

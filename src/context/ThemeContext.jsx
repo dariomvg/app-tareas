@@ -5,7 +5,7 @@ export const ThemeContext = createContext();
 
 
 export default function ThemeProvider({children}) {
-    const [theme, setTheme] = useState(false);
+    const [theme, setTheme] = useState(true);
     
 
     const data = {theme, setTheme};

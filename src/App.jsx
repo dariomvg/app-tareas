@@ -1,12 +1,15 @@
-import "./App.css";
-import { SeccionPrincipal } from "./components/otras-secciones/SeccionPrincipal";
+import FunctionsProvider from "./context/FunctionsContext";
 import ThemeProvider from "./context/ThemeContext";
+import { SeccionPrincipal } from "./components/otras-secciones/SeccionPrincipal";
+import "./App.css";
 
 function App() {
   return (
-    <ThemeProvider>
-      <SeccionPrincipal />
-    </ThemeProvider>
+    <FunctionsProvider>
+      <ThemeProvider>
+        <SeccionPrincipal />
+      </ThemeProvider>
+    </FunctionsProvider>
   );
 }
 

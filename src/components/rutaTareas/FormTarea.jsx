@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FunctionsContext } from "../../context/FunctionsContext";
+import { tareaInicial } from "../../constantes/objForm";
 import "./Tareas.scss";
-import { tareaInicial } from "../../constantes/objTareas";
 
-
-export function FormTarea({handleTareaNueva}) {
+export function FormTarea() {
   const [form, setForm] = useState(tareaInicial);
+  const {tareaNueva} = useContext(FunctionsContext); 
  
   const handleChangeTarea = (e) => {
     setForm({
@@ -14,7 +15,7 @@ export function FormTarea({handleTareaNueva}) {
   };
   const handleSubmitTarea = (e) => {
     e.preventDefault();
-    handleTareaNueva(form);
+    tareaNueva(form);
     setForm(tareaInicial);
   };
 
@@ -23,7 +24,7 @@ export function FormTarea({handleTareaNueva}) {
       <input
         className="caja-tarea"
         type="text"
-        placeholder="Terminar proyecto,Hacer... "
+        placeholder="Ingrese título de la tarea"
         name="titulo"
         value={form.titulo}
         onChange={handleChangeTarea}
@@ -32,7 +33,7 @@ export function FormTarea({handleTareaNueva}) {
       <textarea
         className="caja-tarea textarea"
         rows="3"
-        placeholder="Escríba su Tarea aquí..."
+        placeholder="Escríba su tarea aquí"
         name="tarea"
         value={form.tarea}
         onChange={handleChangeTarea}

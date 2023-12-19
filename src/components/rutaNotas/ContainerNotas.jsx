@@ -1,47 +1,44 @@
-import { useContext, useEffect, useState } from "react";
-import "./Notas.scss";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import { FunctionsContext } from "../../context/FunctionsContext";
+import {
+  getLocalStorageNotas,
+  setLocalStorageNotas,
+} from "../../controllers/usosLocalStorage";
 import { FormNotas } from "./FormNotas";
 import { NotaNueva } from "./NotaNueva";
-import { ThemeContext } from "../../context/ThemeContext";
+import "./Notas.scss";
+
 
 export function ContainerNotas() {
- const {theme} = useContext(ThemeContext); 
+  const { theme } = useContext(ThemeContext);
+  const {contNotas, setContNotas} = useContext(FunctionsContext); 
 
- const [nota, setNota] = useState([]);
+  useEffect(() => {
+    const dataLocal = getLocalStorageNotas();
+    console.log(dataLocal)
+    if (dataLocal) {
+      setContNotas(JSON.parse(dataLocal));
+    }
+  }, []);
 
- const handleNotaNueva = (data) => {
-   data.id =  Date.now();
-   setNota([...nota, data]);
- };
+  useEffect(() => {
+    setLocalStorageNotas(contNotas);
+  }, [contNotas]);
 
- const eliminarNota = (id) => {
-   setNota(nota.filter((item) => item.id !== id));
- };
-
- useEffect(() => {
-   const dataLocal = localStorage.getItem("notas");
-   if (dataLocal) {
-     setNota(JSON.parse(dataLocal));
-   }
- }, []);
-
- useEffect(() => {
-   localStorage.setItem("notas", JSON.stringify(nota));
- }, [nota]);
- 
   return (
     <section className={`ruta-notas ${theme ? "dark-notas" : ""}`}>
-      <FormNotas handleNotaNueva={handleNotaNueva} />
+      <FormNotas />
+      <hr />
       <section className="section-notas">
-        {nota.length > 0 ? (
-        nota.map((item) => (
-          <NotaNueva key={item.id} item={item} eliminarNota={eliminarNota} />
-        ))
-      ) : (
-        <h1 className="title-sin-notas">Sin Notas</h1>
-      )}
+        {contNotas.length > 0 ? (
+          contNotas.map((item) => (
+            <NotaNueva key={item.id} item={item} />
+          ))
+        ) : (
+          <h1 className="title-sin-notas">Sin Notas</h1>
+        )}
       </section>
-      
     </section>
   );
 }

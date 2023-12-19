@@ -1,23 +1,14 @@
+import { ThemeContext } from "../../context/ThemeContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
-import "./menu.scss";
-import imgDia from "../../assets/images/img-dia.png";
-import imgNoche from "../../assets/images/img-noche.png";
 import imgNotas from "../../assets/icons/img-notas.png";
 import imgTareas from "../../assets/icons/img-tareas.png";
 import imgFavoritos from "../../assets/icons/img-favoritos.png";
-import imgFlechaIzq from "../../assets/icons/flechaIzq.svg";
-import imgFlechaDer from "../../assets/icons/flechaDer.svg";
-import { ThemeContext } from "../../context/ThemeContext";
+import imgLogo from "../../assets/images/img-logo.png";
+import "./menu.scss";
 
 export function Menu() {
-  const [menu, setMenu] = useState(false);
-
   const { theme, setTheme } = useContext(ThemeContext);
-
-  const handleMenu = () => {
-    setMenu(!menu);
-  };
 
   const handleTheme = () => {
     setTheme(!theme);
@@ -25,78 +16,55 @@ export function Menu() {
 
   return (
     <section className={`ligth ${theme ? "dark-menu" : ""} `}>
-     <header className={`header ${menu ? "responsive" : ""}`}>
-      {menu ? (
-        <img
-          onClick={handleMenu}
-          src={imgFlechaDer}
-          className="handle-button"
-          width={30}
-          height={30}
-          alt="imagen flecha derecha"
-        />
-      ) : (
-        <img
-          onClick={handleMenu}
-          src={imgFlechaIzq}
-          className="handle-button"
-          width={30}
-          height={30}
-          alt="imagen flecha izquierda"
-        />
-      )}
-      {menu ? (
-        <h1 className="title-menu-cerrado">T++</h1>
-      ) : (
-        <h1 className="title-header">Tareas++</h1>
-      )}
-      <nav className="navbar">
-        <ul className="lista-nav">
-          <li>
-            <img src={imgTareas} width={38} height={38} alt="imagen de tarea" />
-            <Link className="ruta" to="/">
-              Tareas
-            </Link>
-          </li>
-          <li>
-            <img src={imgNotas} width={38} height={38} alt="imagen de notas" />
-            <Link className="ruta" to="/notas">
-              Notas
-            </Link>
-          </li>
-          <li>
-            <img
-              src={imgFavoritos}
-              width={38}
-              height={38}
-              alt="imagen de favoritos"
-            />
-            <Link className="ruta" to="/favoritos">
-              favoritos
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      {!theme ? (
-        <img
-          className="imgTheme"
-          src={imgNoche}
-          width={100}
-          height={100}
-          alt="imagen de dia"
-          onClick={handleTheme}
-        />
-      ) : (
-        <img
-          className="imgTheme"
-          src={imgDia}
-          width={100}
-          height={100}
-          alt="imagen de dia"
-          onClick={handleTheme}
-        />
-      )}
-    </header>
+      <header className="header">
+        <div className="logo">
+          <img src={imgLogo} alt="imagen logo" />
+          <h1 className="title-logo">Notas</h1>
+        </div>
+        <nav className="navbar">
+          <ul className="lista-nav">
+            <li>
+              <img
+                src={imgTareas}
+                width={40}
+                height={40}
+                alt="imagen de tarea"
+              />
+              <Link className="ruta" to="/">
+                Tareas
+              </Link>
+            </li>
+            <li>
+              <img
+                src={imgNotas}
+                width={40}
+                height={40}
+                alt="imagen de notas"
+              />
+              <Link className="ruta" to="/notas">
+                Notas
+              </Link>
+            </li>
+            <li>
+              <img
+                src={imgFavoritos}
+                width={40}
+                height={40}
+                alt="imagen de favoritos"
+              />
+              <Link className="ruta" to="/favoritos">
+                favoritos
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="toggle-switch">
+          <label className="switch-label">
+            <input type="checkbox" className="checkbox" />
+            <span className="slider" onClick={handleTheme}></span>
+          </label>
+        </div>
+      </header>
     </section>
-   );
+  );
 }

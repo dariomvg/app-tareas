@@ -10,16 +10,19 @@
     flex-direction: column;
     gap: 16px;
     padding: 20px;
+    background-color: #dcdcdc;
+    border-radius: 10px;
     .caja-tarea {
       padding: 10px;
-      border: none;
-      background-color: #e5e7f8;
       font-size: 16px;
       outline: none;
       border-radius: 5px;
+      border: 1px solid #414141;
+      background-color: transparent;
       &::placeholder {
         font-size: 18px;
-        color: #464646;
+        color: #000;
+        font-weight: 500;
       }
       &.textarea {
         resize: none;
@@ -29,11 +32,17 @@
       padding: 10px;
       font-size: 18px;
       font-weight: 500;
-      border: none;
+      border: 1px solid #1b1b1b;
       border-radius: 10px;
       cursor: pointer;
-      background-color: #215a6d;
-      color: #fff;
+      color: #000;
+      background-color: #fff;
+      transition: 0.5s;
+      &:hover {
+        transition: 0.5s;
+        background-color: #1b1b1b;
+        color: #fff;
+      }
     }
   }
   .section-tareas {
@@ -44,14 +53,13 @@
     gap: 20px;
     background-color: #fff;
     padding: 16px;
-    border-top: 2px solid #aaa9a9;
     .titulo-sin-tareas {
       padding: 10px;
       font-size: 40px;
     }
     .container-tarea {
       position: relative;
-      width: 250px;
+      width: 500px;
       height: 300px;
       box-shadow: 0 0 8px #000;
       border-radius: 10px;
@@ -63,42 +71,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .circulo {
-          width: 30px;
-          height: 30px;
-          -webkit-clip-path: polygon(
-            50% 0%,
-            61% 35%,
-            98% 35%,
-            68% 57%,
-            79% 91%,
-            50% 70%,
-            21% 91%,
-            32% 57%,
-            2% 35%,
-            39% 35%
-          );
-          clip-path: polygon(
-            50% 0%,
-            61% 35%,
-            98% 35%,
-            68% 57%,
-            79% 91%,
-            50% 70%,
-            21% 91%,
-            32% 57%,
-            2% 35%,
-            39% 35%
-          );
+        padding: 5px;
+        .icon-like {
           cursor: pointer;
-          background-color: rgb(99, 99, 99);
         }
         .selected {
-          background-color: #fdc716;
+          animation: scaleAnimation 1s alternate-reverse ease-in-out;
         }
         .eliminar-tarea {
-          width: 30px;
-          font-size: 35px;
           background: none;
           border: none;
           cursor: pointer;
@@ -122,31 +102,61 @@
     }
   }
   &.dark-tareas {
-    background-color: #2d2d29;
+    background-color: #16181d;
 
-    .btn-tarea {
-      background-color: #3ca2a2;
+    .form-tarea {
+      background-color: #000;
+
+      .caja-tarea {
+        color: #fff;
+        &::placeholder {
+          color: #858585;
+          font-weight: 500;
+        }
+      }
+
+      .btn-tarea {
+        border: 1px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        &:hover {
+          color: #000;
+          background-color: #fff;
+        }
+      }
     }
+
     .section-tareas {
-      background-color: #2d2d29;
+      background-color: #16181d;
       .titulo-sin-tareas {
         color: #fff;
       }
       .container-tarea {
-        background-color: #215a6d;
+        background-color: #2a2f3a;
+        border: 1px solid #fff;
         box-shadow: 0 0 3px #fff;
         .titulo-tarea {
-          color: #ffffff;
+          color: #6dc7ff;
         }
         .eliminar-tarea {
           color: #fff;
         }
         .div-tarea {
           .p-tarea {
-            color: #00c3ff;
+            color: #9e9c9c;
           }
         }
       }
     }
+  }
+}
+
+@keyframes scaleAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
   }
 }
